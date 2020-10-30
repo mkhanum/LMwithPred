@@ -12,6 +12,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Introduction  
 This is the Linear Model with Prediction problem. Predict strength scores using data from the following website.    
 
+$H_0$: There is no difference in the given models and none of them is better than the other.  
+$H_A$:There is a difference in the given models and one of them is better than the other.
+
 ```{r}
 dataF <- read.csv(file="http://onlinestatbook.com/case_studies_rvls/physical_strength/data.txt", sep="", header=TRUE)  
 ```
@@ -72,4 +75,7 @@ summary.lm(model.3)
 predict.lm(model.3,New,interval="prediction")
 ```
 
-
+```{r}
+anova(model.1,model.3)
+```
+As seen above, the p value is less than 1 which makes us reject the null hypothesis and conclude that there is a difference between the models and one of them is better than the other two. We concluded that based on the adjusted R-squared which was higher for model 1 than the other two models. 

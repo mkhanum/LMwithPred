@@ -421,6 +421,8 @@ summary {
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
 <p>This is the Linear Model with Prediction problem. Predict strength scores using data from the following website.</p>
+<p><span class="math inline">\(H_0\)</span>: There is no difference in the given models and none of them is better than the other.<br />
+<span class="math inline">\(H_A\)</span>:There is a difference in the given models and one of them is better than the other.</p>
 <pre class="r"><code>dataF &lt;- read.csv(file=&quot;http://onlinestatbook.com/case_studies_rvls/physical_strength/data.txt&quot;, sep=&quot;&quot;, header=TRUE)  </code></pre>
 <p>###Plot scatterplot</p>
 <pre class="r"><code>plot(SIMS~ARM,data=dataF)</code></pre>
@@ -508,6 +510,17 @@ summary.lm(model.3)</code></pre>
 <pre class="r"><code>predict.lm(model.3,New,interval=&quot;prediction&quot;)</code></pre>
 <pre><code>##         fit       lwr      upr
 ## 1 0.1496476 -2.132373 2.431668</code></pre>
+<pre class="r"><code>anova(model.1,model.3)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: SIMS ~ ARM
+## Model 2: SIMS ~ ARM + GRIP
+##   Res.Df    RSS Df Sum of Sq      F    Pr(&gt;F)    
+## 1    145 217.88                                  
+## 2    144 188.43  1     29.45 22.506 4.994e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>As seen above, the p value is less than 1 which makes us reject the null hypothesis and conclude that there is a difference between the models and one of them is better than the other two. We concluded that based on the adjusted R-squared which was higher for model 1 than the other two models.</p>
 </div>
 
 
